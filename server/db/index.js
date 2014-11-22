@@ -9,21 +9,28 @@ var db = mysql.createConnection({
 
 db.connect();
 
-// // module.exports = {
-//   query: function(queryArgurments){
-//     db.query(queryArgurments, function(err, results) {
-//   if (err) throw err;
-//   return results;
-//     });
+var query = function(queryString) {
+  db.query(queryString,function(err,result) {
+    if (err) throw err;
+    return result;
+  });
+}
+
+// var insert = function(table,columns,values) {
+//   db.query("INSERT INTO " + table +"(" + columns + ") VALUES (" + values + ");"), function(err, result){
+//     if(err) throw err;
+//     return result;
 //   }
 // }
-db.query("INSERT INTO users (username) VALUES ('Thomas Klon');");
-db.query('SELECT * FROM users;', function(err, result) {
-  if (err) throw err;
 
-  console.log('The solution is: ', result);
-});
+// insert(users, username, 'Marcus Phillips');
+// query('SELECT * FROM users;');
 
-// module.exports = {}
+// query("INSERT INTO users (username) VALUES ('Kim Klon');");
+// // query("INSERT INTO users (username) VALUES ('Thomas Klon');");
+// var something = query('SELECT * FROM users;');
+// console.log(something);
+
+exports.query = query;
 
 db.end();
