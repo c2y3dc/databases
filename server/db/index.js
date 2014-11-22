@@ -1,19 +1,15 @@
 var mysql      = require('mysql');
-
-
-var db = mysql.createConnection({
+var database = mysql.createConnection({
   database: "chat",
   user     : 'root',
   password : ''
 });
 
-db.connect();
 
-var query = function(queryString) {
-  db.query(queryString,function(err,result) {
-    if (err) throw err;
-    return result;
-  });
+var query = function(queryString,callback) {
+  // db.connect();
+  database.query(queryString,callback);
+  // db.end();
 }
 
 // var insert = function(table,columns,values) {
@@ -33,4 +29,3 @@ var query = function(queryString) {
 
 exports.query = query;
 
-db.end();

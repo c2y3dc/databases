@@ -1,14 +1,15 @@
 var db = require('../db');
 
-
-
-
 module.exports = {
   messages: {
-    get: function () {
-      return db.query('SELECT * FROM messages;');
-      //get messages from database
-
+    get: function (res) {
+      var sendResponse = function(err,rows) {
+        if (err) {console.log('err');}
+        var storage = {};
+        storage.results = rows;
+        res.send(storage);
+      }
+      db.query('SELECT * FROM messages;',sendResponse);
     }, // a function which produces all the messages
     post: function () {
 

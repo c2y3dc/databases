@@ -1,3 +1,5 @@
+DROP database chat;
+
 CREATE DATABASE chat;
 
 USE chat;
@@ -5,23 +7,17 @@ USE chat;
 
 create table messages
 (text varchar(160),
- user_id int(11),
- room_id int(11),
- RID int(11) NOT NULL auto_increment,
- primary KEY (RID));
-
-create table users
-(username varchar(15),
- RID int(11) NOT NULL auto_increment,
- primary KEY (RID));
-
-create table rooms
-(roomname varchar(15),
+ username varchar(15),
+ roomname varchar(15),
  RID int(11) NOT NULL auto_increment,
  primary KEY (RID));
 
 
-/* Create other tables and define schemas for them here! */
+/* Create other tables and define schemas for them here!
+* start server. mysql -u root < server/schema.sql
+* log in, use 'database', describe 'table'
+*
+**/
 
 
 

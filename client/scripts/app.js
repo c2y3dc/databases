@@ -5,7 +5,7 @@ $(function() {
   app = {
 //TODO: The current 'addFriend' function just adds the class 'friend'
 //to all messages sent by the user
-    server: 'https://localhost:3000/classes/messages/',
+    server: 'http://localhost:3000/classes/messages/',
     username: 'anonymous',
     roomname: 'lobby',
     lastMessageId: 0,
@@ -62,8 +62,7 @@ $(function() {
         contentType: 'application/json',
         // data: { order: '-createdAt'},
         success: function(data) {
-          console.log('chatterbox: Messages fetched');
-
+          console.log('chatterbox: Messages fetched',data);
           // Don't bother if we have nothing to work with
           if (!data.results || !data.results.length) { return; }
 
@@ -142,7 +141,7 @@ $(function() {
     addMessage: function(data) {
       if (!data.roomname)
         data.roomname = 'lobby';
-
+// debugger
       // Only add messages that are in our current room
       if (data.roomname === app.roomname) {
         // Create a div to hold the chats
